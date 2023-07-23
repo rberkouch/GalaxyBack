@@ -1,1 +1,1 @@
-# GalaxyBack
+# GalaxyBack - Projet Galaxy
