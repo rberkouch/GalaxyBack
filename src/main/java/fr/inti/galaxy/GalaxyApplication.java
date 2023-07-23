@@ -85,10 +85,10 @@ public class GalaxyApplication {
         	user1.setProfileImageUrl("url/images");
         	user1.setRole("Admin");
         	user1.setUserId(UUID.randomUUID().toString());
-        	user1.setUsername("dada");
+        	user1.setUsername("User");
         	userService.addNewUtilisateur(user1);
-    		accountService.addRoleToUser("dada", "USER");
-    		accountService.addRoleToUser("dada", "ADMIN");
+    		accountService.addRoleToUser("User", "USER");
+    		accountService.addRoleToUser("User", "ADMIN");
 //           Stream.of("Hassan","Imane","Mohamed").forEach(name->{
 //               CustomerDTO customer=new CustomerDTO();
 //               customer.setName(name);
