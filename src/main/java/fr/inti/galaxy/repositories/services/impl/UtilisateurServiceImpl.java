@@ -335,4 +335,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return userRepository.findByUsername(username);
 	}
 
+	public Utilisateur addNewUser(Utilisateur user) {
+		user.setUserId(UUID.randomUUID().toString());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		// TODO Auto-generated method stub
+		return userRepository.save(user);
+	}
+
 }
