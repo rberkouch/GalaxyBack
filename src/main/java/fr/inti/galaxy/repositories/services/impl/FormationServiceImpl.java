@@ -30,4 +30,11 @@ public class FormationServiceImpl implements FormationService{
 		return formationRepository.save(formation);
 	}
 
+	@Override
+	public void delete(int id) {
+		formationRepository.delete(formationRepository.getReferenceById(id));		
+	}
+	
+	
+
 }

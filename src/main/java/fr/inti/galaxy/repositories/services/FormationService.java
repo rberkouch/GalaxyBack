@@ -10,4 +10,6 @@ public interface FormationService {
 	public Formation getFormationById(Integer i);
 
 	public Formation save(Formation formation);
+	
+	public void delete(int id);
 }
