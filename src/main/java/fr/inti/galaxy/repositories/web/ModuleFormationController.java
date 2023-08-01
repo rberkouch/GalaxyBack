@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.inti.galaxy.dtos.ModuleFormationDTO;
 import fr.inti.galaxy.entities.ModuleFormation;
 import fr.inti.galaxy.mappers.MapperImpl;
+import fr.inti.galaxy.repositories.DocumentRepository;
 import fr.inti.galaxy.repositories.ModuleFormationRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,8 @@ public class ModuleFormationController {
 	
 	@Autowired
 	ModuleFormationRepository mfr;
+	@Autowired
+	DocumentRepository dr;
 	
 	@GetMapping("/modules")
 	public List<ModuleFormationDTO> modules() {
@@ -39,6 +42,7 @@ public class ModuleFormationController {
 	
 	@PostMapping("/addModule")
     public ModuleFormation addNewModule(@RequestBody ModuleFormation moduleFormation) {
+		dr.saveAll(moduleFormation.getDocuments());
         return  mfr.save(moduleFormation);
     }
 	
