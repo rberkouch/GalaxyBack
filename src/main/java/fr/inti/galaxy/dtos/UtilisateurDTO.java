@@ -28,13 +28,7 @@ public class UtilisateurDTO {
 	private String password;
 	private String email;
 	private String profileImageUrl;
-	private Date lastLoginDate;
-	private Date lastLoginDateDisplay;
-	private Date joinDate;
-	private String role; // ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
-	private String[] authorities;
 	private boolean isActive;
-	private boolean isNotLocked;
 	private List<DocumentDTO> documents;
 	
 }

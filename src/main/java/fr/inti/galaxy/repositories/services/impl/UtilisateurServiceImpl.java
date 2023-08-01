@@ -88,12 +88,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		user.setLastName(lastName);
 		user.setUsername(username);
 		user.setEmail(email);
-		user.setJoinDate(new Date());
+		//user.setJoinDate(new Date());
 		user.setPassword(encodePassword(password));
 		user.setActive(true);
-		user.setNotLocked(true);
-		user.setRole(ROLE_USER.name());
-		user.setAuthorities(ROLE_USER.getAuthorities());
+		//user.setNotLocked(true);
+		//user.setRole(ROLE_USER.name());
+		//user.setAuthorities(ROLE_USER.getAuthorities());
 		user.setProfileImageUrl(getTemporaryProfileImageUrl(username));
 		userRepository.save(user);
 		
@@ -111,14 +111,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		user.setUserId(generateUserId());
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setJoinDate(new Date());
+		//user.setJoinDate(new Date());
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setPassword(encodePassword(password));
 		user.setActive(isActive);
-		user.setNotLocked(isNonLocked);
-		user.setRole(getRoleEnumName(role).name());
-		user.setAuthorities(getRoleEnumName(role).getAuthorities());
+		//user.setNotLocked(isNonLocked);
+		//user.setRole(getRoleEnumName(role).name());
+		//user.setAuthorities(getRoleEnumName(role).getAuthorities());
 		user.setProfileImageUrl(getTemporaryProfileImageUrl(username));
 		userRepository.save(user);
 		saveProfileImage(user, profileImage);
@@ -137,9 +137,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		currentUser.setUsername(newUsername);
 		currentUser.setEmail(newEmail);
 		currentUser.setActive(isActive);
-		currentUser.setNotLocked(isNonLocked);
-		currentUser.setRole(getRoleEnumName(role).name());
-		currentUser.setAuthorities(getRoleEnumName(role).getAuthorities());
+		//currentUser.setNotLocked(isNonLocked);
+		//urrentUser.setRole(getRoleEnumName(role).name());
+		//currentUser.setAuthorities(getRoleEnumName(role).getAuthorities());
 		userRepository.save(currentUser);
 		saveProfileImage(currentUser, profileImage);
 		return currentUser;
@@ -336,8 +336,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	public Utilisateur addNewUser(Utilisateur user) {
-		user.setUserId(UUID.randomUUID().toString());
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		if(user.getUserId() == null) {
+					user.setUserId(UUID.randomUUID().toString());
+		}
+
+		if (user.getPassword() != null) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		}
+	
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
 	}

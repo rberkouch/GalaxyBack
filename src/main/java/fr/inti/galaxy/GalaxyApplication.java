@@ -73,17 +73,12 @@ public class GalaxyApplication {
         	Utilisateur user1 = new Utilisateur();
         	user1.setActive(true);
         	String[] auth = new String[]{"ADMIN"};
-        	user1.setAuthorities(auth);
         	user1.setEmail("dare@dare.com");
         	user1.setFirstName("dare");
-        	user1.setJoinDate(new Date());
-        	user1.setLastLoginDate(new Date());
-        	user1.setLastLoginDateDisplay(new Date());
         	user1.setLastName("Deville");
-        	user1.setNotLocked(true);
         	user1.setPassword(passwordEncoder.encode("password"));
         	user1.setProfileImageUrl("url/images");
-        	user1.setRole("Admin");
+        	//user1.setRole("Admin");
         	user1.setUserId(UUID.randomUUID().toString());
         	user1.setUsername("User");
         	userService.addNewUtilisateur(user1);
