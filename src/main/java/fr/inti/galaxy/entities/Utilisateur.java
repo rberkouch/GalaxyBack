@@ -1,6 +1,5 @@
 package fr.inti.galaxy.entities;
 
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,7 +20,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -36,16 +38,13 @@ public class Utilisateur {
 	private String email;
 	private String profileImageUrl;
 
-
-
 	private boolean isActive;
-
 
 	@ManyToMany
 	@JoinTable(name = "tbl_utilisateurs_documents", joinColumns = @JoinColumn(name = "utilisateurId"), inverseJoinColumns = @JoinColumn(name = "documentId"))
 	private List<Document> documents;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<AppRole> roles;
-	
+
 }

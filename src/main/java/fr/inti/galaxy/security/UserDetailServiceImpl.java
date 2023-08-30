@@ -19,18 +19,20 @@ import lombok.AllArgsConstructor;
 public class UserDetailServiceImpl implements UserDetailsService {
 
 	private UtilisateurServiceImpl accountService;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Utilisateur appUser = accountService.loadUserByUsername(username);
-	//String[] roles = appUser.getRoles().stream().map(u -> u.getRole()).toArray(String[]::new);
-	List<SimpleGrantedAuthority> authorities =	appUser.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
-		if (appUser==null) throw new UsernameNotFoundException(String.format("User %s not found",username ));
-		UserDetails userDetails=User.withUsername(appUser.getUsername())
-									.password(appUser.getPassword())
-									.authorities(authorities)
-									//.roles(roles)
-									.build();
+		// String[] roles = appUser.getRoles().stream().map(u ->
+		// u.getRole()).toArray(String[]::new);
+		List<SimpleGrantedAuthority> authorities = appUser.getRoles().stream()
+				.map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
+		if (appUser == null)
+			throw new UsernameNotFoundException(String.format("User %s not found", username));
+		UserDetails userDetails = User.withUsername(appUser.getUsername()).password(appUser.getPassword())
+				.authorities(authorities)
+				// .roles(roles)
+				.build();
 		return userDetails;
 	}
 
