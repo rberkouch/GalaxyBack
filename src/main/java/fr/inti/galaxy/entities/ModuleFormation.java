@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +29,7 @@ public class ModuleFormation {
 	@ManyToMany
 	private List<Formation> formations;
 
-	@ManyToMany
-	@JoinTable(name = "tbl_modules_documents", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "documentId"))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tbl_modules_documents", joinColumns = @JoinColumn(name = "moduleId",referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<Document> documents;
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,7 @@ import fr.inti.galaxy.entities.Document;
 import fr.inti.galaxy.repositories.services.FilesStorageService;
 
 @Service
+@Transactional
 public class FilesStorageServiceImpl implements FilesStorageService {
 
   private final Path root = Paths.get("uploads");

@@ -23,12 +23,12 @@ import fr.inti.galaxy.exceptions.EmailExistException;
 import fr.inti.galaxy.exceptions.EmailNotFoundException;
 import fr.inti.galaxy.exceptions.NotAnImageFileException;
 import fr.inti.galaxy.exceptions.UtilisateurNotFoundException;
-import fr.inti.galaxy.exceptions.UtilisateurnameExistException;
+import fr.inti.galaxy.exceptions.UtilisateurNameExistException;
 import fr.inti.galaxy.security.AppRole;
 
 public interface UtilisateurService {
 	Utilisateur register(String firstName, String lastName, String Utilisateurname, String email)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException;
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException;
 
 	List<Utilisateur> getUtilisateurs();
 
@@ -36,14 +36,14 @@ public interface UtilisateurService {
 
 	Utilisateur addNewUtilisateur(String firstName, String lastName, String Utilisateurname, String email, String role,
 			boolean isNonLocked, boolean isActive, MultipartFile profileImage) throws UtilisateurNotFoundException,
-			UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException;
+			UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException;
 
-	Utilisateur addNewUtilisateur(Utilisateur user) throws UtilisateurNotFoundException, UtilisateurnameExistException,
+	Utilisateur addNewUtilisateur(Utilisateur user) throws UtilisateurNotFoundException, UtilisateurNameExistException,
 			EmailExistException, IOException, NotAnImageFileException;
 
 	Utilisateur updateUtilisateur(String currentUtilisateurname, String newFirstName, String newLastName,
 			String newUtilisateurname, String newEmail, String role, boolean isNonLocked, boolean isActive,
-			MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurnameExistException,
+			MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurNameExistException,
 			EmailExistException, IOException, NotAnImageFileException;
 
 	void resetPassword(String email) throws EmailNotFoundException;
@@ -51,7 +51,7 @@ public interface UtilisateurService {
 	void saveProfileImage(Utilisateur user, MultipartFile profileImage) throws IOException, NotAnImageFileException;
 
 	Utilisateur updateProfileImage(String Utilisateurname, MultipartFile profileImage)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException, IOException,
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException, IOException,
 			NotAnImageFileException;
 
 	List<Utilisateur> searchUtilisateurs(String keyword);
@@ -69,7 +69,7 @@ public interface UtilisateurService {
 	String generateUserId();
 
 	Utilisateur validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException;
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException;
 
 	Utilisateur findUtilisateurByEmail(String email);
 

@@ -40,11 +40,16 @@ public class Utilisateur {
 
 	private boolean isActive;
 
-	@ManyToMany
-	@JoinTable(name = "tbl_utilisateurs_documents", joinColumns = @JoinColumn(name = "utilisateurId"), inverseJoinColumns = @JoinColumn(name = "documentId"))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tbl_utilisateurs_documents", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<Document> documents;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tbl_utilisateurs_documents_projets", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
+	private List<DocumentProjet> documentProjets;
 
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "profil", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId",referencedColumnName = "role"))
 	private List<AppRole> roles;
 
 }

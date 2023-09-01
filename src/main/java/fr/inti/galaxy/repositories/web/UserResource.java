@@ -33,7 +33,7 @@ import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.exceptions.EmailExistException;
 import fr.inti.galaxy.exceptions.NotAnImageFileException;
 import fr.inti.galaxy.exceptions.UtilisateurNotFoundException;
-import fr.inti.galaxy.exceptions.UtilisateurnameExistException;
+import fr.inti.galaxy.exceptions.UtilisateurNameExistException;
 import fr.inti.galaxy.repositories.services.impl.UtilisateurServiceImpl;
 @RestController
 @RequestMapping(path = { "/", "/user"})
@@ -54,7 +54,7 @@ public class UserResource {
 
 
     @PostMapping("/register")
-    public ResponseEntity<Utilisateur> register(@RequestBody Utilisateur user) throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException{
+    public ResponseEntity<Utilisateur> register(@RequestBody Utilisateur user) throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException{
     	Utilisateur newUser = userServiceImpl.register(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail());
         return new ResponseEntity<>(newUser, OK);
     }
@@ -74,7 +74,7 @@ public class UserResource {
     
     
     @PostMapping("/add")
-    public Utilisateur addNewUser(@RequestBody Utilisateur user) throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException {
+    public Utilisateur addNewUser(@RequestBody Utilisateur user) throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
     	//Utilisateur newUser = userServiceImpl.addNewUser(username, password, email,confirPassword);
         return  userServiceImpl.addNewUser(user);
     }
@@ -88,7 +88,7 @@ public class UserResource {
                                        @RequestParam("role") String role,
                                        @RequestParam("isActive") String isActive,
                                        @RequestParam("isNonLocked") String isNonLocked,
-                                       @RequestParam(value = "profileImage", required = false) MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException {
+                                       @RequestParam(value = "profileImage", required = false) MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
     	Utilisateur updatedUser = userServiceImpl.updateUtilisateur(currentUsername, firstName, lastName, username,email, role, Boolean.parseBoolean(isNonLocked), Boolean.parseBoolean(isActive), profileImage);
         return new ResponseEntity<>(updatedUser, OK);
     }
@@ -115,7 +115,7 @@ public class UserResource {
 
 
     @PostMapping("/updateProfileImage")
-    public ResponseEntity<Utilisateur> updateProfileImage(@RequestParam("username") String username, @RequestParam(value = "profileImage") MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException {
+    public ResponseEntity<Utilisateur> updateProfileImage(@RequestParam("username") String username, @RequestParam(value = "profileImage") MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
     	Utilisateur user = userServiceImpl.updateProfileImage(username, profileImage);
         return new ResponseEntity<>(user, OK);
     }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +27,7 @@ public class Formation {
 	private Date operationDate;
 	private String formationName;
 	private String imageUrl;
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "tbl_formations_modules", joinColumns = @JoinColumn(name = "formationId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+	@JoinTable(name = "tbl_formations_modules", joinColumns = @JoinColumn(name = "formationId",referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "moduleId",referencedColumnName = "id"))
 	private List<ModuleFormation> modules;
 }

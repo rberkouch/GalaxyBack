@@ -48,7 +48,7 @@ import fr.inti.galaxy.exceptions.EmailExistException;
 import fr.inti.galaxy.exceptions.EmailNotFoundException;
 import fr.inti.galaxy.exceptions.NotAnImageFileException;
 import fr.inti.galaxy.exceptions.UtilisateurNotFoundException;
-import fr.inti.galaxy.exceptions.UtilisateurnameExistException;
+import fr.inti.galaxy.exceptions.UtilisateurNameExistException;
 import fr.inti.galaxy.repositories.UtilisateurRepository;
 import fr.inti.galaxy.repositories.services.UtilisateurService;
 import fr.inti.galaxy.security.AppRole;
@@ -79,7 +79,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur register(String firstName, String lastName, String username, String email)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException {
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException {
 		// validateNewUsernameAndEmail(EMPTY, username, email);
 		Utilisateur user = new Utilisateur();
 		user.setUserId(generateUserId());
@@ -88,15 +88,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		user.setLastName(lastName);
 		user.setUsername(username);
 		user.setEmail(email);
-		//user.setJoinDate(new Date());
+		// user.setJoinDate(new Date());
 		user.setPassword(encodePassword(password));
 		user.setActive(true);
-		//user.setNotLocked(true);
-		//user.setRole(ROLE_USER.name());
-		//user.setAuthorities(ROLE_USER.getAuthorities());
+		// user.setNotLocked(true);
+		// user.setRole(ROLE_USER.name());
+		// user.setAuthorities(ROLE_USER.getAuthorities());
 		user.setProfileImageUrl(getTemporaryProfileImageUrl(username));
 		userRepository.save(user);
-		
 
 		return user;
 	}
@@ -104,32 +103,32 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Utilisateur addNewUtilisateur(String firstName, String lastName, String username, String email, String role,
 			boolean isNonLocked, boolean isActive, MultipartFile profileImage) throws UtilisateurNotFoundException,
-			UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException {
+			UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
 		// validateNewUsernameAndEmail(EMPTY, username, email);
 		Utilisateur user = new Utilisateur();
 		String password = generatePassword();
 		user.setUserId(generateUserId());
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		//user.setJoinDate(new Date());
+		// user.setJoinDate(new Date());
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setPassword(encodePassword(password));
 		user.setActive(isActive);
-		//user.setNotLocked(isNonLocked);
-		//user.setRole(getRoleEnumName(role).name());
-		//user.setAuthorities(getRoleEnumName(role).getAuthorities());
+		// user.setNotLocked(isNonLocked);
+		// user.setRole(getRoleEnumName(role).name());
+		// user.setAuthorities(getRoleEnumName(role).getAuthorities());
 		user.setProfileImageUrl(getTemporaryProfileImageUrl(username));
 		userRepository.save(user);
 		saveProfileImage(user, profileImage);
-	
+
 		return user;
 	}
 
 	@Override
 	public Utilisateur updateUtilisateur(String currentUsername, String newFirstName, String newLastName,
 			String newUsername, String newEmail, String role, boolean isNonLocked, boolean isActive,
-			MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurnameExistException,
+			MultipartFile profileImage) throws UtilisateurNotFoundException, UtilisateurNameExistException,
 			EmailExistException, IOException, NotAnImageFileException {
 		Utilisateur currentUser = validateNewUsernameAndEmail(currentUsername, newUsername, newEmail);
 		currentUser.setFirstName(newFirstName);
@@ -137,9 +136,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		currentUser.setUsername(newUsername);
 		currentUser.setEmail(newEmail);
 		currentUser.setActive(isActive);
-		//currentUser.setNotLocked(isNonLocked);
-		//urrentUser.setRole(getRoleEnumName(role).name());
-		//currentUser.setAuthorities(getRoleEnumName(role).getAuthorities());
+		// currentUser.setNotLocked(isNonLocked);
+		// urrentUser.setRole(getRoleEnumName(role).name());
+		// currentUser.setAuthorities(getRoleEnumName(role).getAuthorities());
 		userRepository.save(currentUser);
 		saveProfileImage(currentUser, profileImage);
 		return currentUser;
@@ -154,13 +153,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		String password = generatePassword();
 		user.setPassword(encodePassword(password));
 		userRepository.save(user);
-		
 
 	}
 
 	@Override
 	public Utilisateur updateProfileImage(String username, MultipartFile profileImage)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException, IOException,
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException, IOException,
 			NotAnImageFileException {
 		Utilisateur user = validateNewUsernameAndEmail(username, null, null);
 		saveProfileImage(user, profileImage);
@@ -201,14 +199,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
 			if (!Files.exists(userFolder)) {
 				Files.createDirectories(userFolder);
-				
+
 			}
 			Files.deleteIfExists(Paths.get(userFolder + user.getUsername() + DOT + JPG_EXTENSION));
 			Files.copy(profileImage.getInputStream(), userFolder.resolve(user.getUsername() + DOT + JPG_EXTENSION),
 					REPLACE_EXISTING);
 			user.setProfileImageUrl(setProfileImageUrl(user.getUsername()));
 			userRepository.save(user);
-			
+
 		}
 	}
 
@@ -254,7 +252,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur addNewUtilisateur(Utilisateur user) throws UtilisateurNotFoundException,
-			UtilisateurnameExistException, EmailExistException, IOException, NotAnImageFileException {
+			UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
 
 		userRepository.save(user);
 
@@ -263,7 +261,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur validateNewUsernameAndEmail(String currentUsername, String newUsername, String newEmail)
-			throws UtilisateurNotFoundException, UtilisateurnameExistException, EmailExistException {
+			throws UtilisateurNotFoundException, UtilisateurNameExistException, EmailExistException {
 		Utilisateur userByNewUsername = findUtilisateurByUtilisateurname(newUsername);
 		Utilisateur userByNewEmail = findUtilisateurByEmail(newEmail);
 		if (StringUtils.isNotBlank(currentUsername)) {
@@ -272,7 +270,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 				throw new UtilisateurNotFoundException(NO_USER_FOUND_BY_USERNAME + currentUsername);
 			}
 			if (userByNewUsername != null && !currentUser.getUserId().equals(userByNewUsername.getUserId())) {
-				throw new UtilisateurnameExistException(USERNAME_ALREADY_EXISTS);
+				throw new UtilisateurNameExistException(USERNAME_ALREADY_EXISTS);
 			}
 			if (userByNewEmail != null && !currentUser.getUserId().equals(userByNewEmail.getUserId())) {
 				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
@@ -280,7 +278,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			return currentUser;
 		} else {
 			if (userByNewUsername != null) {
-				throw new UtilisateurnameExistException(USERNAME_ALREADY_EXISTS);
+				throw new UtilisateurNameExistException(USERNAME_ALREADY_EXISTS);
 			}
 			if (userByNewEmail != null) {
 				throw new EmailExistException(EMAIL_ALREADY_EXISTS);
@@ -288,27 +286,26 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Utilisateur addNewUser(String username, String password, String email, String confirPassword) {
 		Utilisateur appUser = userRepository.findByUsername(username);
-		if (appUser!=null)throw new RuntimeException("This user already exists");
-		if(!password.equals(confirPassword)) throw new RuntimeException("Password not match");
-		appUser = Utilisateur.builder()
-				.userId(UUID.randomUUID().toString())
-				.username(username)
-				.password(passwordEncoder.encode(password))
-				.email(email)
-				.build();
-		
-		Utilisateur savedAppUser =	userRepository.save(appUser);
+		if (appUser != null)
+			throw new RuntimeException("This user already exists");
+		if (!password.equals(confirPassword))
+			throw new RuntimeException("Password not match");
+		appUser = Utilisateur.builder().userId(UUID.randomUUID().toString()).username(username)
+				.password(passwordEncoder.encode(password)).email(email).build();
+
+		Utilisateur savedAppUser = userRepository.save(appUser);
 		return savedAppUser;
 	}
 
 	@Override
 	public AppRole addnewRole(String role) {
 		AppRole appRole = appRoleRepository.findById(role).orElse(null);
-		if(appRole!=null) throw new RuntimeException("This role already exist");
+		if (appRole != null)
+			throw new RuntimeException("This role already exist");
 		appRole = AppRole.builder().role(role).build();
 		return appRoleRepository.save(appRole);
 	}
@@ -318,7 +315,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		Utilisateur appUser = userRepository.findByUsername(username);
 		AppRole appRole = appRoleRepository.findById(role).get();
 		appUser.getRoles().add(appRole);
-		//appUserRepository.save(appUser); pas besoin car transactional en haut dès qu'il quitte il fait commit()
+		// appUserRepository.save(appUser); pas besoin car transactional en haut dès
+		// qu'il quitte il fait commit()
 	}
 
 	@Override
@@ -331,19 +329,19 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur loadUserByUsername(String username) {
-		
+
 		return userRepository.findByUsername(username);
 	}
 
 	public Utilisateur addNewUser(Utilisateur user) {
-		if(user.getUserId() == null) {
-					user.setUserId(UUID.randomUUID().toString());
+		if (user.getUserId() == null) {
+			user.setUserId(UUID.randomUUID().toString());
 		}
 
 		if (user.getPassword() != null) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
-	
+
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
 	}

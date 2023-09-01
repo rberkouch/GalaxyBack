@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.inti.galaxy.entities.Formation;
 import fr.inti.galaxy.repositories.FormationRepository;
 import fr.inti.galaxy.repositories.services.FormationService;
 
 @Service
+@Transactional
 public class FormationServiceImpl implements FormationService{
 	
 	@Autowired
