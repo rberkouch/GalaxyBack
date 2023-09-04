@@ -7,8 +7,9 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class LivrableDTO extends DocumentProjetDTO {
-
+	private String git_url_back;
+	private String git_url_front;
 }

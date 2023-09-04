@@ -1,6 +1,5 @@
 package fr.inti.galaxy.entities;
 
-
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Data;
@@ -12,8 +11,9 @@ import lombok.experimental.SuperBuilder;
 @DiscriminatorValue("livrable")
 @Data
 @SuperBuilder
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class Livrable extends DocumentProjet{
-
+public class Livrable extends DocumentProjet {
+	private String git_url_back;
+	private String git_url_front;
 }

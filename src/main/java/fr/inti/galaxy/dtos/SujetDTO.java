@@ -10,5 +10,8 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper=true)
 @NoArgsConstructor
 public class SujetDTO extends DocumentProjetDTO {
-
+	private String functionality;
+	private String stackTechnique;
+	private String expectedDelivery;
+	private String developerRating;
 }

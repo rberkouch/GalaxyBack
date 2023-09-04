@@ -14,5 +14,8 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Sujet extends DocumentProjet {
-
+	private String functionality;
+	private String stackTechnique;
+	private String expectedDelivery;
+	private String developerRating;
 }

@@ -29,8 +29,9 @@ public class DocumentProjet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date operationDate;
-	private String documentName;
-	private String documentUrl;
+	private String title;
+	private String description;
+	private int timeConstraint;
 
 	@ManyToMany
 	private List<Utilisateur> utilisateurs;
