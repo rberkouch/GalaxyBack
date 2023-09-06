@@ -16,5 +16,6 @@ public class DocumentProjetDTO {
 	private String title;
 	private String description;
 	private int timeConstraint;
+	private String niveau;
 	private List<UtilisateurDTO> utilisateurs;
 }

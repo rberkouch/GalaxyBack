@@ -1,10 +1,9 @@
 package fr.inti.galaxy.entities;
 
-
 import java.util.Date;
 import java.util.List;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,9 +28,12 @@ public class DocumentProjet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date operationDate;
+	@Column(length = 65555)
 	private String title;
+	@Column(length = 65555)
 	private String description;
 	private int timeConstraint;
+	private String niveau;
 
 	@ManyToMany
 	private List<Utilisateur> utilisateurs;
