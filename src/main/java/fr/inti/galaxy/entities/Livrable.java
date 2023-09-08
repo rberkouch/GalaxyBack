@@ -16,7 +16,11 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Livrable extends DocumentProjet {
 	@Column(length = 65555)
-	private String git_url_back;
+	private String repoNameBack;
 	@Column(length = 65555)
-	private String git_url_front;
+	private String repoNameFront;
+	@Column(length = 65555)
+	private String gitUrlBack;
+	@Column(length = 65555)
+	private String gitUrlFront;
 }

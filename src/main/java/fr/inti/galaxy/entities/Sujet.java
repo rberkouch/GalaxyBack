@@ -16,6 +16,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Sujet extends DocumentProjet {
 	@Column(length = 65555)
+	private String description;
+	@Column(length = 65555)
 	private String functionality;
 	@Column(length = 65555)
 	private String stackTechnique;

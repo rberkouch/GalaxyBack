@@ -14,8 +14,7 @@ public class DocumentProjetDTO {
 	private Long id;
 	private Date operationDate;
 	private String title;
-	private String description;
 	private int timeConstraint;
-	private String niveau;
+	private String level;
 	private List<UtilisateurDTO> utilisateurs;
 }

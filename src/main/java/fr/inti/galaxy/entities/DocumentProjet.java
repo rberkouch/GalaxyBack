@@ -30,10 +30,8 @@ public class DocumentProjet {
 	private Date operationDate;
 	@Column(length = 65555)
 	private String title;
-	@Column(length = 65555)
-	private String description;
 	private int timeConstraint;
-	private String niveau;
+	private String level;
 
 	@ManyToMany
 	private List<Utilisateur> utilisateurs;
