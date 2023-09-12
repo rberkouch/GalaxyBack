@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.inti.galaxy.dtos.LivrableDTO;
@@ -47,5 +48,10 @@ public class LivrableController {
 	@PutMapping("/livrables")
 	public void updateLivrable(@RequestBody Livrable livrable) {
 		livrableService.save(livrable);
+	}
+
+	@GetMapping("/livrables/search")
+	public List<Livrable> searchLivrable(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		return livrableService.searchLivrables("%" + keyword + "%");
 	}
 }

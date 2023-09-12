@@ -10,8 +10,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class LivrableDTO extends DocumentProjetDTO {
-	private String repoNameBack;
-	private String repoNameFront;
-	private String gitUrlBack;
-	private String gitUrlFront;
+	private String repoName;
+	private String gitUrl;
 }

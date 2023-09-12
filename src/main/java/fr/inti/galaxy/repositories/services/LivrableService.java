@@ -12,4 +12,6 @@ public interface LivrableService {
 	public Livrable save(Livrable Livrable);
 	
 	public void delete(int id);
+	
+	List<Livrable> searchLivrables(String keyword);
 }
