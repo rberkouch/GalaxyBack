@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import fr.inti.galaxy.dtos.AppRoleDTO;
 import fr.inti.galaxy.dtos.DocumentDTO;
 import fr.inti.galaxy.dtos.DocumentProjetDTO;
 import fr.inti.galaxy.dtos.FormationDTO;
@@ -19,6 +20,7 @@ import fr.inti.galaxy.entities.Livrable;
 import fr.inti.galaxy.entities.ModuleFormation;
 import fr.inti.galaxy.entities.Sujet;
 import fr.inti.galaxy.entities.Utilisateur;
+import fr.inti.galaxy.security.AppRole;
 
 @Service
 public class MapperImpl {
@@ -133,5 +135,17 @@ public class MapperImpl {
 		utilisateur.setDocumentProjets(utilisateurDTO.getDocumentProjets().stream()
 				.map(MapperImpl::fromDocumentProjetDTO).collect(Collectors.toList()));
 		return utilisateur;
+	}
+
+	public static AppRoleDTO fromAppRole(AppRole appRole) {
+		AppRoleDTO roleDTO = new AppRoleDTO();
+		BeanUtils.copyProperties(appRole, roleDTO);
+		return roleDTO;
+	}
+
+	public static AppRole fromAppRoleDTO(AppRoleDTO appRoleDTO) {
+		AppRole appRole = new AppRole();
+		BeanUtils.copyProperties(appRoleDTO, appRole);
+		return appRole;
 	}
 }
