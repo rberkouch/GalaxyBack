@@ -40,4 +40,9 @@ public class LivrableServiceImpl implements LivrableService {
 	public List<Livrable> searchLivrables(String keyword) {
 		return livrableRepository.searchLivrable(keyword);
 	}
+
+	@Override
+	public List<Livrable> findLivrablesParUsername(String username) {
+		return livrableRepository.findLivrablesParUsername(username);
+	}
 }

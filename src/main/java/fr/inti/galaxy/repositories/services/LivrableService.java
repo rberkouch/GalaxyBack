@@ -14,4 +14,6 @@ public interface LivrableService {
 	public void delete(int id);
 	
 	List<Livrable> searchLivrables(String keyword);
+	
+	List<Livrable> findLivrablesParUsername(String username);
 }

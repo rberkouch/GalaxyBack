@@ -21,4 +21,23 @@ public class AppRoleServiceImpl implements AppRoleService {
 		return appRoleRepository.findAll();
 	}
 
+	@Override
+	public AppRole save(AppRole appRole) {
+		return appRoleRepository.save(appRole);
+	}
+
+	@Override
+	public AppRole findOne(String role) {
+		return appRoleRepository.findById(role).get();
+	}
+
+	@Override
+	public void delete(String role) {
+		AppRole appRole=findOne(role);
+		appRoleRepository.delete(appRole);
+		
+	}
+
+	
+
 }
