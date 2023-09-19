@@ -15,5 +15,5 @@ public interface LivrableService {
 	
 	List<Livrable> searchLivrables(String keyword);
 	
-	List<Livrable> findLivrablesParUsername(String username);
+	List<Livrable> findLivrablesByUsername(String username);
 }

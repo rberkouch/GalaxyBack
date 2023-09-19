@@ -31,8 +31,8 @@ public class LivrableController {
 	}
 
 	@GetMapping("/livrables/user/{username}")
-	List<Livrable> findLivrablesParUsername(@PathVariable("username") String username) {
-		return livrableService.findLivrablesParUsername(username);
+	List<Livrable> findLivrablesByUsername(@PathVariable("username") String username) {
+		return livrableService.findLivrablesByUsername(username);
 	}
 
 	@GetMapping("/livrables/{livrableId}")

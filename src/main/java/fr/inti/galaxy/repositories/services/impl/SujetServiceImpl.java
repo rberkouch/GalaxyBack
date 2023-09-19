@@ -12,27 +12,32 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class SujetServiceImpl implements SujetService{
+public class SujetServiceImpl implements SujetService {
 	@Autowired
 	private SujetRepository sujetRepository;
-	
-	public List<Sujet> getAll(){
+
+	public List<Sujet> getAll() {
 		return sujetRepository.findAll();
 	}
-	
+
 	@Override
 	public Sujet getSujetById(Integer i) {
 		return sujetRepository.findById(i).get();
 	}
-	
+
 	@Override
 	public Sujet save(Sujet sujet) {
-		
+
 		return sujetRepository.save(sujet);
 	}
 
 	@Override
 	public void delete(int id) {
-		sujetRepository.delete(sujetRepository.getReferenceById(id));		
+		sujetRepository.delete(sujetRepository.getReferenceById(id));
+	}
+
+	@Override
+	public List<Sujet> findSujetsByUsername(String username) {
+		return sujetRepository.findSujetsByUsername(username);
 	}
 }

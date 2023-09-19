@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import fr.inti.galaxy.entities.FileInfo;
-import fr.inti.galaxy.entities.ResponseMessage;
+import fr.inti.galaxy.models.FileInfo;
+import fr.inti.galaxy.models.ResponseMessage;
 import fr.inti.galaxy.repositories.services.FilesStorageService;
 
 

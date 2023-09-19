@@ -1,19 +1,19 @@
 package fr.inti.galaxy.repositories.services.impl;
 
-import static fr.inti.galaxy.enums.FileConstant.DEFAULT_USER_IMAGE_PATH;
-import static fr.inti.galaxy.enums.FileConstant.DIRECTORY_CREATED;
-import static fr.inti.galaxy.enums.FileConstant.DOT;
-import static fr.inti.galaxy.enums.FileConstant.FILE_SAVED_IN_FILE_SYSTEM;
-import static fr.inti.galaxy.enums.FileConstant.FORWARD_SLASH;
-import static fr.inti.galaxy.enums.FileConstant.JPG_EXTENSION;
-import static fr.inti.galaxy.enums.FileConstant.NOT_AN_IMAGE_FILE;
-import static fr.inti.galaxy.enums.FileConstant.USER_FOLDER;
-import static fr.inti.galaxy.enums.FileConstant.USER_IMAGE_PATH;
+import static fr.inti.galaxy.constants.FileConstant.DEFAULT_USER_IMAGE_PATH;
+import static fr.inti.galaxy.constants.FileConstant.DIRECTORY_CREATED;
+import static fr.inti.galaxy.constants.FileConstant.DOT;
+import static fr.inti.galaxy.constants.FileConstant.FILE_SAVED_IN_FILE_SYSTEM;
+import static fr.inti.galaxy.constants.FileConstant.FORWARD_SLASH;
+import static fr.inti.galaxy.constants.FileConstant.JPG_EXTENSION;
+import static fr.inti.galaxy.constants.FileConstant.NOT_AN_IMAGE_FILE;
+import static fr.inti.galaxy.constants.FileConstant.USER_FOLDER;
+import static fr.inti.galaxy.constants.FileConstant.USER_IMAGE_PATH;
 import static fr.inti.galaxy.enums.Role.ROLE_USER;
-import static fr.inti.galaxy.enums.UserImplConstant.EMAIL_ALREADY_EXISTS;
-import static fr.inti.galaxy.enums.UserImplConstant.NO_USER_FOUND_BY_EMAIL;
-import static fr.inti.galaxy.enums.UserImplConstant.NO_USER_FOUND_BY_USERNAME;
-import static fr.inti.galaxy.enums.UserImplConstant.USERNAME_ALREADY_EXISTS;
+import static fr.inti.galaxy.constants.UserImplConstant.EMAIL_ALREADY_EXISTS;
+import static fr.inti.galaxy.constants.UserImplConstant.NO_USER_FOUND_BY_EMAIL;
+import static fr.inti.galaxy.constants.UserImplConstant.NO_USER_FOUND_BY_USERNAME;
+import static fr.inti.galaxy.constants.UserImplConstant.USERNAME_ALREADY_EXISTS;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.springframework.http.MediaType.IMAGE_GIF_VALUE;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
@@ -61,9 +61,11 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @Qualifier("userDetailsService")
 public class UtilisateurServiceImpl implements UtilisateurService {
-
+	@Autowired
 	private UtilisateurRepository userRepository;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
 	private AppRoleRepository appRoleRepository;
 
 //	@Autowired
@@ -344,6 +346,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
+	}
+
+	@Override
+	public List<Utilisateur> findUsersIfRoleIsTest(String lastname) {
+		return userRepository.findUsersIfRoleIsTest(lastname);
 	}
 
 }

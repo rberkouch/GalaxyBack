@@ -1,4 +1,4 @@
-package fr.inti.galaxy.enums;
+package fr.inti.galaxy.constants;
 
 public class SecurityConstant {
     public static final long EXPIRATION_TIME = 432_000_000; // 5 days expressed in milliseconds

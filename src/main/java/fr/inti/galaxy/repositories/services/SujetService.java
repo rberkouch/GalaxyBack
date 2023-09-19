@@ -10,6 +10,8 @@ public interface SujetService {
 	public Sujet getSujetById(Integer id);
 
 	public Sujet save(Sujet Sujet);
-	
+
 	public void delete(int id);
+
+	List<Sujet> findSujetsByUsername(String username);
 }

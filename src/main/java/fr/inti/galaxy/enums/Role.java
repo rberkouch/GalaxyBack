@@ -1,5 +1,7 @@
 package fr.inti.galaxy.enums;
 
+import fr.inti.galaxy.constants.Authority;
+
 public enum Role {
     ROLE_USER(Authority.USER_AUTHORITIES),
     ROLE_HR(Authority.HR_AUTHORITIES),

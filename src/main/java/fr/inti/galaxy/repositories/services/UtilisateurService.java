@@ -1,13 +1,13 @@
 package fr.inti.galaxy.repositories.services;
 
-import static fr.inti.galaxy.enums.FileConstant.DEFAULT_USER_IMAGE_PATH;
-import static fr.inti.galaxy.enums.FileConstant.DOT;
-import static fr.inti.galaxy.enums.FileConstant.FORWARD_SLASH;
-import static fr.inti.galaxy.enums.FileConstant.JPG_EXTENSION;
-import static fr.inti.galaxy.enums.FileConstant.USER_IMAGE_PATH;
-import static fr.inti.galaxy.enums.UserImplConstant.EMAIL_ALREADY_EXISTS;
-import static fr.inti.galaxy.enums.UserImplConstant.NO_USER_FOUND_BY_USERNAME;
-import static fr.inti.galaxy.enums.UserImplConstant.USERNAME_ALREADY_EXISTS;
+import static fr.inti.galaxy.constants.FileConstant.DEFAULT_USER_IMAGE_PATH;
+import static fr.inti.galaxy.constants.FileConstant.DOT;
+import static fr.inti.galaxy.constants.FileConstant.FORWARD_SLASH;
+import static fr.inti.galaxy.constants.FileConstant.JPG_EXTENSION;
+import static fr.inti.galaxy.constants.FileConstant.USER_IMAGE_PATH;
+import static fr.inti.galaxy.constants.UserImplConstant.EMAIL_ALREADY_EXISTS;
+import static fr.inti.galaxy.constants.UserImplConstant.NO_USER_FOUND_BY_USERNAME;
+import static fr.inti.galaxy.constants.UserImplConstant.USERNAME_ALREADY_EXISTS;
 
 import java.io.IOException;
 import java.util.List;
@@ -74,11 +74,17 @@ public interface UtilisateurService {
 	Utilisateur findUtilisateurByEmail(String email);
 
 	void deleteUtilisateur(String username) throws IOException;
-	
+
 	Utilisateur addNewUser(String username, String password, String email, String confirPassword);
-	AppRole addnewRole (String role);
+
+	AppRole addnewRole(String role);
+
 	void addRoleToUser(String username, String role);
+
 	void removeRoleFromUser(String username, String role);
+
 	Utilisateur loadUserByUsername(String username);
+
+	List<Utilisateur> findUsersIfRoleIsTest(String lastname);
 
 }

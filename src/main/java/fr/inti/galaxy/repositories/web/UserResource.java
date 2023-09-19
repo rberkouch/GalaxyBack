@@ -1,8 +1,8 @@
 package fr.inti.galaxy.repositories.web;
 
-import static fr.inti.galaxy.enums.FileConstant.FORWARD_SLASH;
-import static fr.inti.galaxy.enums.FileConstant.TEMP_PROFILE_IMAGE_BASE_URL;
-import static fr.inti.galaxy.enums.FileConstant.USER_FOLDER;
+import static fr.inti.galaxy.constants.FileConstant.FORWARD_SLASH;
+import static fr.inti.galaxy.constants.FileConstant.TEMP_PROFILE_IMAGE_BASE_URL;
+import static fr.inti.galaxy.constants.FileConstant.USER_FOLDER;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
@@ -135,9 +135,14 @@ public class UserResource {
 	}
 
 	@GetMapping("/user/search")
-	@PreAuthorize("hasAuthority('SCOPE_USER') || hasAuthority('SCOPE_ADMIN')")
+	// @PreAuthorize("hasAuthority('SCOPE_USER') || hasAuthority('SCOPE_ADMIN')")
 	public List<Utilisateur> searchCustomers(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 		return userServiceImpl.searchUtilisateurs("%" + keyword + "%");
+	}
+
+	@GetMapping("/user/ifroletest/search")
+	public List<Utilisateur> findUsersIfRoleIsTest(@RequestParam(name = "keyword", defaultValue = "") String lastname) {
+		return userServiceImpl.findUsersIfRoleIsTest("%" + lastname + "%");
 	}
 
 	private void authenticate(String username, String password) {

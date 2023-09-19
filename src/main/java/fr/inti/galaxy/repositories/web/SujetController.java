@@ -29,6 +29,11 @@ public class SujetController {
 		return sujetService.getAll().stream().map(MapperImpl::fromSujet).collect(Collectors.toList());
 	}
 
+	@GetMapping("/sujets/user/{username}")
+	List<Sujet> findSujetsByUsername(@PathVariable("username") String username) {
+		return sujetService.findSujetsByUsername(username);
+	}
+
 	@GetMapping("/sujets/{sujetId}")
 	public SujetDTO getSujet(@PathVariable(name = "sujetId") Integer sujetId) {
 		return MapperImpl.fromSujet(sujetService.getSujetById(sujetId));

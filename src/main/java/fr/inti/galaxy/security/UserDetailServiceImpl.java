@@ -20,6 +20,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 	private UtilisateurServiceImpl accountService;
 
+	@SuppressWarnings("unused")
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Utilisateur appUser = accountService.loadUserByUsername(username);

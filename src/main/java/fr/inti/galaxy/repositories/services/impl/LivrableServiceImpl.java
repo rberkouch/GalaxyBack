@@ -42,7 +42,7 @@ public class LivrableServiceImpl implements LivrableService {
 	}
 
 	@Override
-	public List<Livrable> findLivrablesParUsername(String username) {
-		return livrableRepository.findLivrablesParUsername(username);
+	public List<Livrable> findLivrablesByUsername(String username) {
+		return livrableRepository.findLivrablesByUsername(username);
 	}
 }

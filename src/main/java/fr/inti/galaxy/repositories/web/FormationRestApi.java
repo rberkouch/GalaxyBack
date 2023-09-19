@@ -28,7 +28,7 @@ public class FormationRestApi {
 	FormationService formationService;
 
 	@GetMapping("/formations")
-	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	//@PreAuthorize("hasAuthority('SCOPE_USER')")
 	public List<FormationDTO> formations() {
 		return formationService.getAll().stream().map(MapperImpl::fromFormation).collect(Collectors.toList());
 	}

@@ -1,4 +1,4 @@
-package fr.inti.galaxy.enums;
+package fr.inti.galaxy.constants;
 
 public class FileConstant {
     public static final String USER_IMAGE_PATH = "/user/image/";

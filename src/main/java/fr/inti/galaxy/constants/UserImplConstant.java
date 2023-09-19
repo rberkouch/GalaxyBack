@@ -1,4 +1,4 @@
-package fr.inti.galaxy.enums;
+package fr.inti.galaxy.constants;
 
 public class UserImplConstant {
     public static final String USERNAME_ALREADY_EXISTS = "Username already exists";

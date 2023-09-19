@@ -1,4 +1,4 @@
-package fr.inti.galaxy.enums;
+package fr.inti.galaxy.constants;
 
 public class EmailConstant {
     public static final String SIMPLE_MAIL_TRANSFER_PROTOCOL = "smtps";
