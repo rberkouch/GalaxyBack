@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.entities.Sujet;
+import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.mappers.MapperImpl;
 import fr.inti.galaxy.repositories.services.SujetService;
 
@@ -32,6 +34,11 @@ public class SujetController {
 	@GetMapping("/sujets/user/{username}")
 	List<Sujet> findSujetsByUsername(@PathVariable("username") String username) {
 		return sujetService.findSujetsByUsername(username);
+	}
+
+	@PostMapping("/sujets/insertsujetuser")
+	void insertSujetUtilisateur(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
+		sujetService.insertSujetUtilisateur(idSujet, idUser);
 	}
 
 	@GetMapping("/sujets/{sujetId}")

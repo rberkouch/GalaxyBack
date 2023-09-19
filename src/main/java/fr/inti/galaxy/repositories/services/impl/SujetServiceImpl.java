@@ -40,4 +40,9 @@ public class SujetServiceImpl implements SujetService {
 	public List<Sujet> findSujetsByUsername(String username) {
 		return sujetRepository.findSujetsByUsername(username);
 	}
+
+	@Override
+	public void insertSujetUtilisateur(Long idSujet, String idUser) {
+		sujetRepository.insertSujetUtilisateur(idSujet, idUser);
+	}
 }

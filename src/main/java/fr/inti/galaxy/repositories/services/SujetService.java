@@ -14,4 +14,6 @@ public interface SujetService {
 	public void delete(int id);
 
 	List<Sujet> findSujetsByUsername(String username);
+	
+	void insertSujetUtilisateur(Long idSujet,String idUser);
 }
