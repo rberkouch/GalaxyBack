@@ -42,7 +42,13 @@ public class SujetServiceImpl implements SujetService {
 	}
 
 	@Override
-	public void insertSujetUtilisateur(Long idSujet, String idUser) {
-		sujetRepository.insertSujetUtilisateur(idSujet, idUser);
+	public void affectSujetToUser(Long idSujet, String idUser) {
+		sujetRepository.affectSujetToUser(idSujet, idUser);
+	}
+
+	@Override
+	public void deleteOneFromDocumentProjetUtilisateurs(Long idSujet, String idUser) {
+		sujetRepository.deleteOneFromDocumentProjetUtilisateurs(idSujet, idUser);
+		
 	}
 }

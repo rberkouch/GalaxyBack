@@ -140,9 +140,9 @@ public class UserResource {
 		return userServiceImpl.searchUtilisateurs("%" + keyword + "%");
 	}
 
-	@GetMapping("/user/ifroletest/search")
-	public List<Utilisateur> findUsersIfRoleIsTest(@RequestParam(name = "keyword", defaultValue = "") String lastname) {
-		return userServiceImpl.findUsersIfRoleIsTest("%" + lastname + "%");
+	@GetMapping("/user/ifroleapprenant/search")
+	public List<Utilisateur> findUsersIfRoleIsApprenant(@RequestParam(name = "keyword", defaultValue = "") String lastname) {
+		return userServiceImpl.findUsersIfRoleIsApprenant("%" + lastname + "%");
 	}
 
 	private void authenticate(String username, String password) {

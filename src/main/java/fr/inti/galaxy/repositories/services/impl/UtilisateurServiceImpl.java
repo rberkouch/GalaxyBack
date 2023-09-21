@@ -349,8 +349,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public List<Utilisateur> findUsersIfRoleIsTest(String lastname) {
-		return userRepository.findUsersIfRoleIsTest(lastname);
+	public List<Utilisateur> findUsersIfRoleIsApprenant(String lastname) {
+		return userRepository.findUsersIfRoleIsApprenant(lastname);
 	}
 
 }

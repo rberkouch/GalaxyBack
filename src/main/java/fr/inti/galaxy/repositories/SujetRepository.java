@@ -18,6 +18,9 @@ public interface SujetRepository extends JpaRepository<Sujet, Integer> {
 	@Transactional
 	@Modifying
 	@Query(value = "INSERT INTO document_projet_utilisateurs(document_projet_id,utilisateurs_user_id) VALUES (:idSujet,:idUser)", nativeQuery = true)
-	void insertSujetUtilisateur(@Param("idSujet")Long idSujet,@Param("idUser") String idUser);
+	void affectSujetToUser(@Param("idSujet")Long idSujet,@Param("idUser") String idUser);
+	@Modifying
+	@Query(value = "DELETE FROM document_projet_utilisateurs WHERE document_projet_id = :idSujet and utilisateurs_user_id = :idUser", nativeQuery = true)
+	void deleteOneFromDocumentProjetUtilisateurs(@Param("idSujet")Long idSujet,@Param("idUser") String idUser);
 
 }

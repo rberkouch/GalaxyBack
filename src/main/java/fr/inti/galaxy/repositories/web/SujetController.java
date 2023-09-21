@@ -37,8 +37,8 @@ public class SujetController {
 	}
 
 	@PostMapping("/sujets/insertsujetuser")
-	void insertSujetUtilisateur(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
-		sujetService.insertSujetUtilisateur(idSujet, idUser);
+	void affectSujetToUser(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
+		sujetService.affectSujetToUser(idSujet, idUser);
 	}
 
 	@GetMapping("/sujets/{sujetId}")
@@ -54,6 +54,12 @@ public class SujetController {
 	@DeleteMapping("/sujets/{sujetId}")
 	public void deleteSujet(@PathVariable("sujetId") int sujetId) {
 		sujetService.delete(sujetId);
+	}
+
+	@DeleteMapping("/sujets/{sujetId}/{idUser}")
+	public void deleteOneFromDocumentProjetUtilisateurs(@PathVariable("sujetId") Long idSujet,
+			@PathVariable("idUser") String idUser) {
+		sujetService.deleteOneFromDocumentProjetUtilisateurs(idSujet, idUser);
 	}
 
 	@PutMapping("/sujets")
