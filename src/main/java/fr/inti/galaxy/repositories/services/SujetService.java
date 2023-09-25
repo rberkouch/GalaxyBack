@@ -1,6 +1,9 @@
 package fr.inti.galaxy.repositories.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.repository.query.Param;
 
 import fr.inti.galaxy.entities.Sujet;
 
@@ -18,4 +21,6 @@ public interface SujetService {
 	void affectSujetToUser(Long idSujet, String idUser);
 
 	void deleteOneFromDocumentProjetUtilisateurs(Long idSujet, String idUser);
+
+	<T> List<Optional<T>> findAllDocumentProjetUtilisateurs(Long idSujet, String idUser);
 }
