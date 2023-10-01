@@ -1,6 +1,7 @@
 package fr.inti.galaxy.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,9 +46,8 @@ public class Utilisateur {
 	@JoinTable(name = "tbl_utilisateurs_documents", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<Document> documents;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tbl_utilisateurs_documents_projets", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
-	private List<DocumentProjet> documentProjets;
+	@OneToMany(mappedBy = "utilisateur")
+	private Set<DocumentProjetUtilisateurs> documentProjetUtilisateurs;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "profil", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId",referencedColumnName = "role"))

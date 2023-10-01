@@ -1,7 +1,7 @@
 package fr.inti.galaxy.entities;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -33,6 +33,6 @@ public class DocumentProjet {
 	private int timeConstraint;
 	private String level;
 
-	@ManyToMany
-	private List<Utilisateur> utilisateurs;
+	@OneToMany(mappedBy = "documentProjet")
+	private Set<DocumentProjetUtilisateurs> documentProjetUtilisateurs;
 }
