@@ -1,7 +1,7 @@
 package fr.inti.galaxy.dtos;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +16,5 @@ public class DocumentProjetDTO {
 	private String title;
 	private int timeConstraint;
 	private String level;
-	private Set<DocumentProjetUtilisateursDTO> documentProjetUtilisateursDTOs;
+	private List<UtilisateurDTO> utilisateurs;
 }
