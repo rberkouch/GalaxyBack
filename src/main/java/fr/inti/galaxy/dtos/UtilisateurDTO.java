@@ -1,6 +1,8 @@
 package fr.inti.galaxy.dtos;
 
 import java.util.List;
+import java.util.Set;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,6 @@ public class UtilisateurDTO {
 	private String profileImageUrl;
 	private boolean isActive;
 	private List<DocumentDTO> documents;
-	private List<DocumentProjetDTO> documentProjets;
+	private Set<DocumentProjetUtilisateursDTO> documentProjetUtilisateursDTOs;
 
 }

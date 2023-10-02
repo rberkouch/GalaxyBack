@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import fr.inti.galaxy.dtos.AppRoleDTO;
 import fr.inti.galaxy.dtos.DocumentDTO;
 import fr.inti.galaxy.dtos.DocumentProjetDTO;
+import fr.inti.galaxy.dtos.DocumentProjetUtilisateursDTO;
 import fr.inti.galaxy.dtos.FormationDTO;
 import fr.inti.galaxy.dtos.LivrableDTO;
 import fr.inti.galaxy.dtos.ModuleFormationDTO;
@@ -15,6 +16,7 @@ import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.dtos.UtilisateurDTO;
 import fr.inti.galaxy.entities.Document;
 import fr.inti.galaxy.entities.DocumentProjet;
+import fr.inti.galaxy.entities.DocumentProjetUtilisateurs;
 import fr.inti.galaxy.entities.Formation;
 import fr.inti.galaxy.entities.Livrable;
 import fr.inti.galaxy.entities.ModuleFormation;
@@ -44,16 +46,16 @@ public class MapperImpl {
 	public static DocumentProjetDTO fromDocumentProjet(DocumentProjet documentProjet) {
 		DocumentProjetDTO documentProjetDTO = new DocumentProjetDTO();
 		BeanUtils.copyProperties(documentProjet, documentProjetDTO);
-		documentProjetDTO.setUtilisateurs(documentProjet.getUtilisateurs().stream().map(MapperImpl::fromUtilisateur)
-				.collect(Collectors.toList()));
+		documentProjetDTO.setDocumentProjetUtilisateursDTOs(documentProjet.getDocumentProjetUtilisateurs().stream()
+				.map(MapperImpl::fromDocumentProjetUtilisateurs).collect(Collectors.toSet()));
 		return documentProjetDTO;
 	}
 
 	public static DocumentProjet fromDocumentProjetDTO(DocumentProjetDTO documentProjetDTO) {
 		DocumentProjet documentProjet = new DocumentProjet();
 		BeanUtils.copyProperties(documentProjetDTO, documentProjet);
-		documentProjet.setUtilisateurs(documentProjetDTO.getUtilisateurs().stream().map(MapperImpl::fromUtilisateurDTO)
-				.collect(Collectors.toList()));
+		documentProjet.setDocumentProjetUtilisateurs(documentProjetDTO.getDocumentProjetUtilisateursDTOs().stream()
+				.map(MapperImpl::fromDocumentProjetUtilisateursDTO).collect(Collectors.toSet()));
 		return documentProjet;
 	}
 
@@ -79,6 +81,20 @@ public class MapperImpl {
 		Livrable livrable = new Livrable();
 		BeanUtils.copyProperties(livrableDTO, livrable);
 		return livrable;
+	}
+
+	public static DocumentProjetUtilisateursDTO fromDocumentProjetUtilisateurs(
+			DocumentProjetUtilisateurs documentProjetUtilisateurs) {
+		DocumentProjetUtilisateursDTO documentProjetUtilisateursDTO = new DocumentProjetUtilisateursDTO();
+		BeanUtils.copyProperties(documentProjetUtilisateurs, documentProjetUtilisateursDTO);
+		return documentProjetUtilisateursDTO;
+	}
+
+	public static DocumentProjetUtilisateurs fromDocumentProjetUtilisateursDTO(
+			DocumentProjetUtilisateursDTO documentProjetUtilisateursDTO) {
+		DocumentProjetUtilisateurs documentProjetUtilisateurs = new DocumentProjetUtilisateurs();
+		BeanUtils.copyProperties(documentProjetUtilisateursDTO, documentProjetUtilisateurs);
+		return documentProjetUtilisateurs;
 	}
 
 	public static FormationDTO fromFormation(Formation formation) {
@@ -122,8 +138,8 @@ public class MapperImpl {
 		BeanUtils.copyProperties(utilisateur, utilisateurDTO);
 		utilisateurDTO.setDocuments(
 				utilisateur.getDocuments().stream().map(MapperImpl::fromDocument).collect(Collectors.toList()));
-		utilisateurDTO.setDocumentProjets(utilisateur.getDocumentProjets().stream().map(MapperImpl::fromDocumentProjet)
-				.collect(Collectors.toList()));
+		utilisateurDTO.setDocumentProjetUtilisateursDTOs(utilisateur.getDocumentProjetUtilisateurs().stream()
+				.map(MapperImpl::fromDocumentProjetUtilisateurs).collect(Collectors.toSet()));
 		return utilisateurDTO;
 	}
 
@@ -132,8 +148,8 @@ public class MapperImpl {
 		BeanUtils.copyProperties(utilisateurDTO, utilisateur);
 		utilisateur.setDocuments(
 				utilisateurDTO.getDocuments().stream().map(MapperImpl::fromDocumentDTO).collect(Collectors.toList()));
-		utilisateur.setDocumentProjets(utilisateurDTO.getDocumentProjets().stream()
-				.map(MapperImpl::fromDocumentProjetDTO).collect(Collectors.toList()));
+		utilisateur.setDocumentProjetUtilisateurs(utilisateurDTO.getDocumentProjetUtilisateursDTOs().stream()
+				.map(MapperImpl::fromDocumentProjetUtilisateursDTO).collect(Collectors.toSet()));
 		return utilisateur;
 	}
 
