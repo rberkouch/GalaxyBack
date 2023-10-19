@@ -1,13 +1,13 @@
 package fr.inti.galaxy;
 
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.CommandLineRunner;*/
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+/*import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import fr.inti.galaxy.entities.Formation;
@@ -17,12 +17,12 @@ import fr.inti.galaxy.repositories.services.FilesStorageService;
 import fr.inti.galaxy.repositories.services.UtilisateurService;
 import fr.inti.galaxy.repositories.services.impl.FormationServiceImpl;
 import fr.inti.galaxy.repositories.services.impl.UtilisateurServiceImpl;
-import jakarta.annotation.Resource;
+import jakarta.annotation.Resource;*/
 
 @SpringBootApplication
 public class GalaxyApplication {
 
-	@Bean
+	/*@Bean
 	CommandLineRunner commandLineRunnerUserDetails(UtilisateurService accountService) {
 		return args -> {
 			accountService.addnewRole("USER");
@@ -40,18 +40,18 @@ public class GalaxyApplication {
 	}
 
 	@Resource
-	FilesStorageService storageService;
+	FilesStorageService storageService;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(GalaxyApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	CommandLineRunner commandLineRunner(UtilisateurServiceImpl userService, FormationServiceImpl formationService,
 			PasswordEncoder passwordEncoder, UtilisateurService accountService) {
-		return args -> {
+		return args -> {*/
 //          storageService.deleteAll();
-			storageService.init();
+			/*storageService.init();
 			ModuleFormation moduleFormation1 = new ModuleFormation();
 			moduleFormation1.setModuleName("JavaScript");
 			ModuleFormation moduleFormation5 = new ModuleFormation();
@@ -96,6 +96,6 @@ public class GalaxyApplication {
 			userService.addNewUtilisateur(user2);
 			accountService.addRoleToUser("Formateur", "FORMATEUR");
 		};
-	}
+	}*/
 
 }
