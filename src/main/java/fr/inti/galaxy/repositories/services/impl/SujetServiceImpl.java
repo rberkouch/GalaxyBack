@@ -1,6 +1,7 @@
 package fr.inti.galaxy.repositories.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,18 @@ public class SujetServiceImpl implements SujetService {
 	}
 
 	@Override
-	public void insertSujetUtilisateur(Long idSujet, String idUser) {
-		sujetRepository.insertSujetUtilisateur(idSujet, idUser);
+	public void affectSujetToUser(Long idSujet, String idUser) {
+		sujetRepository.affectSujetToUser(idSujet, idUser);
+	}
+
+	@Override
+	public void deleteOneFromDocumentProjetUtilisateurs(Long idSujet, String idUser) {
+		sujetRepository.deleteOneFromDocumentProjetUtilisateurs(idSujet, idUser);
+
+	}
+
+	@Override
+	public <T> List<Optional<T>> findAllDocumentProjetUtilisateurs(Long idSujet, String idUser) {
+		return sujetRepository.findAllDocumentProjetUtilisateurs(idSujet, idUser);
 	}
 }

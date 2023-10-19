@@ -85,6 +85,8 @@ public interface UtilisateurService {
 
 	Utilisateur loadUserByUsername(String username);
 
-	List<Utilisateur> findUsersIfRoleIsTest(String lastname);
+	List<Utilisateur> findUsersIfRoleIsApprenant(String lastname);
+	
+	List<Utilisateur> findUsersWithSujetDocumentProjet(int id);
 
 }

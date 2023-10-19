@@ -1,6 +1,7 @@
 package fr.inti.galaxy.repositories.web;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.entities.Sujet;
-import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.mappers.MapperImpl;
 import fr.inti.galaxy.repositories.services.SujetService;
 
@@ -36,9 +36,15 @@ public class SujetController {
 		return sujetService.findSujetsByUsername(username);
 	}
 
+	@GetMapping("/documentProjetUtilisateurs/{idSujet}/{idUser}")
+	public <T> List<Optional<T>> findAllDocumentProjetUtilisateurs(@PathVariable("idSujet") Long idSujet,
+			@PathVariable("idUser") String idUser) {
+		return sujetService.findAllDocumentProjetUtilisateurs(idSujet, idUser);
+	}
+
 	@PostMapping("/sujets/insertsujetuser")
-	void insertSujetUtilisateur(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
-		sujetService.insertSujetUtilisateur(idSujet, idUser);
+	void affectSujetToUser(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
+		sujetService.affectSujetToUser(idSujet, idUser);
 	}
 
 	@GetMapping("/sujets/{sujetId}")
@@ -54,6 +60,12 @@ public class SujetController {
 	@DeleteMapping("/sujets/{sujetId}")
 	public void deleteSujet(@PathVariable("sujetId") int sujetId) {
 		sujetService.delete(sujetId);
+	}
+
+	@DeleteMapping("/sujets/{sujetId}/{idUser}")
+	public void deleteOneFromDocumentProjetUtilisateurs(@PathVariable("sujetId") Long idSujet,
+			@PathVariable("idUser") String idUser) {
+		sujetService.deleteOneFromDocumentProjetUtilisateurs(idSujet, idUser);
 	}
 
 	@PutMapping("/sujets")

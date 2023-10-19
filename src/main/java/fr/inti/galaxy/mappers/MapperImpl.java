@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import fr.inti.galaxy.dtos.AppRoleDTO;
+import fr.inti.galaxy.dtos.AvisDTO;
 import fr.inti.galaxy.dtos.DocumentDTO;
 import fr.inti.galaxy.dtos.DocumentProjetDTO;
 import fr.inti.galaxy.dtos.FormationDTO;
@@ -13,6 +14,7 @@ import fr.inti.galaxy.dtos.LivrableDTO;
 import fr.inti.galaxy.dtos.ModuleFormationDTO;
 import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.dtos.UtilisateurDTO;
+import fr.inti.galaxy.entities.Avis;
 import fr.inti.galaxy.entities.Document;
 import fr.inti.galaxy.entities.DocumentProjet;
 import fr.inti.galaxy.entities.Formation;
@@ -68,10 +70,17 @@ public class MapperImpl {
 		BeanUtils.copyProperties(sujetDTO, sujet);
 		return sujet;
 	}
+	
+	public static AvisDTO fromAvis(Avis avis) {
+		AvisDTO avisDTO = new AvisDTO();
+		BeanUtils.copyProperties(avis, avisDTO);
+		return avisDTO;
+	}
 
 	public static LivrableDTO fromLivrable(Livrable livrable) {
 		LivrableDTO livrableDTO = new LivrableDTO();
 		BeanUtils.copyProperties(livrable, livrableDTO);
+		livrableDTO.setAvis(livrable.getAvis().stream().map(MapperImpl::fromAvis).collect(Collectors.toList()));
 		return livrableDTO;
 	}
 
