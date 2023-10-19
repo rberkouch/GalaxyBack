@@ -46,6 +46,7 @@ public class GalaxyApplication {
 		SpringApplication.run(GalaxyApplication.class, args);
 	}
 
+
 	/*@Bean
 	CommandLineRunner commandLineRunner(UtilisateurServiceImpl userService, FormationServiceImpl formationService,
 			PasswordEncoder passwordEncoder, UtilisateurService accountService) {

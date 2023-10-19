@@ -29,6 +29,7 @@ public class LivrableController {
 	public List<LivrableDTO> livrables() {
 		return livrableService.getAll().stream().map(MapperImpl::fromLivrable).collect(Collectors.toList());
 	}
+	
 
 	@GetMapping("/livrables/user/{username}")
 	List<Livrable> findLivrablesByUsername(@PathVariable("username") String username) {

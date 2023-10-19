@@ -148,4 +148,10 @@ public class UserResource {
 	private void authenticate(String username, String password) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 	}
+	
+	@GetMapping("/userWithDocumentSujet/{idSujet}")
+	public List<Utilisateur> findByDocumentSujet(@PathVariable("idSujet")int idSujet)
+	{
+		return userServiceImpl.findUsersWithSujetDocumentProjet(idSujet);
+	}
 }

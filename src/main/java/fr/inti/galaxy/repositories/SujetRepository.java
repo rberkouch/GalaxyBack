@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.inti.galaxy.entities.Sujet;
+import fr.inti.galaxy.entities.Utilisateur;
 
 @Repository
 public interface SujetRepository extends JpaRepository<Sujet, Integer> {
@@ -29,5 +30,8 @@ public interface SujetRepository extends JpaRepository<Sujet, Integer> {
 	@Query(value = "select * from document_projet_utilisateurs WHERE document_projet_id = :idSujet and utilisateurs_user_id = :idUser", nativeQuery = true)
 	<T> List<Optional<T>> findAllDocumentProjetUtilisateurs(@Param("idSujet") Long idSujet,
 			@Param("idUser") String idUser);
+	
+	@Query("select s.utilisateurs from Sujet s where s.id=:id ")
+	public List<Utilisateur> chercherUserWithSujet(@Param("id") int id);
 
 }

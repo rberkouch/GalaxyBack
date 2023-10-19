@@ -49,6 +49,7 @@ import fr.inti.galaxy.exceptions.EmailNotFoundException;
 import fr.inti.galaxy.exceptions.NotAnImageFileException;
 import fr.inti.galaxy.exceptions.UtilisateurNotFoundException;
 import fr.inti.galaxy.exceptions.UtilisateurNameExistException;
+import fr.inti.galaxy.repositories.SujetRepository;
 import fr.inti.galaxy.repositories.UtilisateurRepository;
 import fr.inti.galaxy.repositories.services.UtilisateurService;
 import fr.inti.galaxy.security.AppRole;
@@ -67,6 +68,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private AppRoleRepository appRoleRepository;
+	
+	@Autowired
+	private SujetRepository sujetRepository;
 
 //	@Autowired
 //	public UtilisateurServiceImpl(UtilisateurRepository userRepository, PasswordEncoder passwordEncoder,) {
@@ -351,6 +355,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public List<Utilisateur> findUsersIfRoleIsApprenant(String lastname) {
 		return userRepository.findUsersIfRoleIsApprenant(lastname);
+	}
+	
+	public List<Utilisateur> findUsersWithSujetDocumentProjet(int id)
+	{
+		return sujetRepository.chercherUserWithSujet(id);
 	}
 
 }
