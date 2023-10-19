@@ -1,4 +1,4 @@
-package fr.inti.galaxy.entities;
+	package fr.inti.galaxy.entities;
 
 import java.util.Date;
 import java.util.List;

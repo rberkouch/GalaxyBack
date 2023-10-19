@@ -22,7 +22,7 @@ import jakarta.annotation.Resource;
 @SpringBootApplication
 public class GalaxyApplication {
 
-	@Bean
+	/*@Bean
 	CommandLineRunner commandLineRunnerUserDetails(UtilisateurService accountService) {
 		return args -> {
 			accountService.addnewRole("USER");
@@ -40,12 +40,12 @@ public class GalaxyApplication {
 	}
 
 	@Resource
-	FilesStorageService storageService;
+	FilesStorageService storageService;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(GalaxyApplication.class, args);
 	}
-
+/*
 	@Bean
 	CommandLineRunner commandLineRunner(UtilisateurServiceImpl userService, FormationServiceImpl formationService,
 			PasswordEncoder passwordEncoder, UtilisateurService accountService) {
@@ -96,6 +96,6 @@ public class GalaxyApplication {
 			userService.addNewUtilisateur(user2);
 			accountService.addRoleToUser("Formateur", "FORMATEUR");
 		};
-	}
+	}*/
 
 }
