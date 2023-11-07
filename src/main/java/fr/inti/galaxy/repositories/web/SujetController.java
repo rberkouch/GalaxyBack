@@ -2,6 +2,7 @@ package fr.inti.galaxy.repositories.web;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,18 @@ public class SujetController {
 
 	@GetMapping("/sujets")
 	public List<SujetDTO> sujets() {
-		return sujetService.getAll().stream().map(MapperImpl::fromSujet).collect(Collectors.toList());
+		Predicate<Sujet> predicate=s-> s.getStatut()==2 || s.getStatut()==3 ; 
+		return sujetService.getAll().stream()
+				.filter(predicate).map(MapperImpl::fromSujet).collect(Collectors.toList());
 	}
+	
+	@GetMapping("/sujetsSupp")
+	public List<SujetDTO> sujetsSupp() {
+		Predicate<Sujet> predicate=s-> s.getStatut()==0; 
+		return sujetService.getAll().stream()
+				.filter(predicate).map(MapperImpl::fromSujet).collect(Collectors.toList());
+	}
+
 
 	@GetMapping("/sujets/user/{username}")
 	List<Sujet> findSujetsByUsername(@PathVariable("username") String username) {

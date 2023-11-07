@@ -1,12 +1,5 @@
 package fr.inti.galaxy.entities;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import fr.inti.galaxy.security.AppRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,16 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Avis {
+public class Notification {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String texteAvis;
+	private long id;
+	private String message;
 	@ManyToOne
 	private Utilisateur utilisateur;
 	@ManyToOne
-	@JsonBackReference
-	private Livrable livrable;
-	
+	private Sujet sujet;
+	private int statut; // 0:non traité 1:traité 
+	private String type; // ajout ou suppression
 	
 }

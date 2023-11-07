@@ -25,4 +25,5 @@ public class Sujet extends DocumentProjet {
 	private String expectedDelivery;
 	@Column(length = 65555)
 	private String developerRating;
+	private Integer statut; //0: supprimé 1: pas encore activé 2: activé 3: demande de supp envoyé 
 }
