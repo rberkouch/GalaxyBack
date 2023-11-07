@@ -88,5 +88,7 @@ public interface UtilisateurService {
 	List<Utilisateur> findUsersIfRoleIsApprenant(String lastname);
 	
 	List<Utilisateur> findUsersWithSujetDocumentProjet(int id);
+	
+	
 
 }

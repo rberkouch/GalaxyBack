@@ -14,11 +14,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +34,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.exceptions.EmailExistException;
 import fr.inti.galaxy.exceptions.NotAnImageFileException;
 import fr.inti.galaxy.exceptions.UtilisateurNotFoundException;
 import fr.inti.galaxy.exceptions.UtilisateurNameExistException;
 import fr.inti.galaxy.repositories.services.impl.UtilisateurServiceImpl;
+import jakarta.mail.internet.MimeMessage;
 
 @RestController
 @RequestMapping(path = { "/", "/user" })
@@ -42,7 +52,47 @@ public class UserResource {
 	public static final String USER_DELETED_SUCCESSFULLY = "User deleted successfully";
 	private AuthenticationManager authenticationManager;
 	private UtilisateurServiceImpl userServiceImpl;
+	
+	/* @Autowired
+	private JavaMailSender emailSender;
+	 
+	 @Autowired
+	 private TemplateEngine templateEngine;
+	 
+	 
+	 @GetMapping("/mailTest")
+		public void mailTest() {
+		 
+		 SimpleMailMessage message = new SimpleMailMessage(); 
+	        message.setFrom("intiformationintiformaion@gmail.com");
+	        message.setTo("dardour.mohammed@gmail.com"); 
+	        message.setSubject("objet test"); 
+	        message.setText("test de test");
+	        emailSender.send(message);
+		 
+		 try {
+	            MimeMessage message = emailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
+	            Context context = new Context();
+	            context.setVariable("password", "password");
+
+	            // Charger le contenu HTML à partir du fichier
+	            String emailContent = templateEngine.process("registration-email", context);
+	            
+	            helper.setTo("dardour.mohammed@gmail.com");
+	            helper.setSubject("Confirmation de compte");
+	            helper.setText(emailContent, true);
+
+	            emailSender.send(message);
+	        } catch (Exception e) {
+	            // Gérer les erreurs d'envoi d'e-mail
+	            e.printStackTrace();
+	        }
+
+
+		}*/
+	
 	@Autowired
 	public UserResource(AuthenticationManager authenticationManager, UtilisateurServiceImpl userServiceImpl) {
 		this.authenticationManager = authenticationManager;
@@ -153,5 +203,17 @@ public class UserResource {
 	public List<Utilisateur> findByDocumentSujet(@PathVariable("idSujet")int idSujet)
 	{
 		return userServiceImpl.findUsersWithSujetDocumentProjet(idSujet);
+	}
+	
+	@PostMapping("/updatePassword")
+	public void updatePassword(String username,String password)
+	{
+		System.out.println(username);
+		System.out.println(password);
+		Utilisateur utilisateur=userServiceImpl.findUtilisateurByUtilisateurname(username);
+		utilisateur.setPassword(password);
+		utilisateur.setFirstLogin(true);
+		userServiceImpl.addNewUser(utilisateur);
+		
 	}
 }

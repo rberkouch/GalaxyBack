@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.repositories.services.impl.UtilisateurServiceImpl;
 @RestController
 @RequestMapping("/auth")
@@ -27,6 +28,8 @@ public class SecurityController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Autowired
+	private UtilisateurServiceImpl accountService;
 	
 	@Autowired
 	private JwtEncoder JwtEncoder;
@@ -57,7 +60,12 @@ public class SecurityController {
 			jwtClaimsSet
 			);
 	String jwt = JwtEncoder.encode(jwtEncoderParameters).getTokenValue();
-	return Map.of("access-token",jwt);
+	Utilisateur appUser = accountService.loadUserByUsername(Username);
+	boolean firstLogin =appUser.isFirstLogin();
+	String firstLoginString=""+0;
+	if(firstLogin)
+		firstLoginString=""+1;
+	return Map.of("access-token",jwt,"firstLogin",firstLoginString);
 	
 	}
 	
