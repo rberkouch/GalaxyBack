@@ -1,5 +1,6 @@
 package fr.inti.galaxy.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -23,7 +24,7 @@ public class Livrable extends DocumentProjet {
 	private String repoName;
 	@Column(length = 65555)
 	private String gitUrl;
-	@OneToMany(mappedBy = "livrable")
+	@OneToMany(mappedBy = "livrable",cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<Avis> avis;
 }
