@@ -36,11 +36,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.enums.Role;
@@ -54,6 +58,7 @@ import fr.inti.galaxy.repositories.UtilisateurRepository;
 import fr.inti.galaxy.repositories.services.UtilisateurService;
 import fr.inti.galaxy.security.AppRole;
 import fr.inti.galaxy.security.AppRoleRepository;
+import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -71,6 +76,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	
 	@Autowired
 	private SujetRepository sujetRepository;
+	
+	@Autowired
+	private JavaMailSender emailSender;
+		 
+	@Autowired
+	private TemplateEngine templateEngine;
 
 //	@Autowired
 //	public UtilisateurServiceImpl(UtilisateurRepository userRepository, PasswordEncoder passwordEncoder,) {
@@ -343,13 +354,46 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		if (user.getUserId() == null) {
 			user.setUserId(UUID.randomUUID().toString());
 		}
+		
+		String pass=user.getPassword();
 
 		if (user.getPassword() != null) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
+		
+		 Utilisateur savedUser = userRepository.save(user);
+
+		    sendMail(pass, user.getEmail());
+
+		    return savedUser;
 
 		// TODO Auto-generated method stub
-		return userRepository.save(user);
+		//return userRepository.save(user);
+	}
+	
+	public void sendMail(String password,String email)
+	{
+		//-------------------------------------------------------------------------------------
+		 try {
+	            MimeMessage message = emailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+	            Context context = new Context();
+	            context.setVariable("password", password);
+
+	            // Charger le contenu HTML à partir du fichier
+	            String emailContent = templateEngine.process("registration-email", context);
+	            
+	            helper.setTo("dardour.mohammed@gmail.com");
+	            helper.setSubject("Création de compte");
+	            helper.setText(emailContent, true);
+
+	            emailSender.send(message);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+		
 	}
 
 	@Override

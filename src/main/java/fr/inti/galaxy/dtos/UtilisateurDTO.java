@@ -14,6 +14,7 @@ public class UtilisateurDTO {
 	private String email;
 	private String profileImageUrl;
 	private boolean isActive;
+	private boolean firstLogin;
 	private List<DocumentDTO> documents;
 	private List<DocumentProjetDTO> documentProjets;
 

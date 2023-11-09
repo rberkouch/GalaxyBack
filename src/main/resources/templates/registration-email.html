@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Création de compte - Galaxy IntiFormation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue à IntiFormation</h1>
+        <p>Votre compte Galaxy intiFormation a été créé avec succès.</p>
+        <p>Votre mot de passe temporaire est : <strong th:text="${password}"></strong></p>
+        <p>Nous vous recommandons de changer votre mot de passe après la première connexion.</p>
+        <p>Cordialement</p>
+        <p>IntiFormation</p>
+    </div>
+</body>
+</html>

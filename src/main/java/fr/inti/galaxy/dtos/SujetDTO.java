@@ -15,4 +15,5 @@ public class SujetDTO extends DocumentProjetDTO {
 	private String stackTechnique;
 	private String expectedDelivery;
 	private String developerRating;
+	private Integer statut;
 }
