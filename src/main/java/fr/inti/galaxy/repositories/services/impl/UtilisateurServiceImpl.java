@@ -384,7 +384,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	            // Charger le contenu HTML à partir du fichier
 	            String emailContent = templateEngine.process("registration-email", context);
 	            
-	            helper.setTo("dardour.mohammed@gmail.com");
+	            helper.setTo(email);
 	            helper.setSubject("Création de compte");
 	            helper.setText(emailContent, true);
 
