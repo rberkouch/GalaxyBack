@@ -55,7 +55,7 @@ public class Utilisateur {
 	@JoinTable(name = "profil", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId",referencedColumnName = "role"))
 	private List<AppRole> roles;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Profile profile;
 	
 	
