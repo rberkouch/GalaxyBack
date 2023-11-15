@@ -42,8 +42,8 @@ public class LivrableController {
 	}
 
 	@PostMapping("/livrables")
-	public Livrable addNewLivrable(@RequestBody Livrable formation) {
-		return livrableService.save(formation);
+	public Livrable addNewLivrable(@RequestBody Livrable livrable) {
+		return livrableService.save(livrable);
 	}
 
 	@DeleteMapping("/livrables/{livrableId}")

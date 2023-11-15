@@ -4,6 +4,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,4 +28,6 @@ public class Livrable extends DocumentProjet {
 	@OneToMany(mappedBy = "livrable",cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<Avis> avis;
+	@ManyToOne
+	private Sujet sujet;
 }

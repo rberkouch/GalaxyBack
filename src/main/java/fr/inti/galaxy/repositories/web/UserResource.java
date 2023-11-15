@@ -126,6 +126,7 @@ public class UserResource {
 			UtilisateurNameExistException, EmailExistException, IOException, NotAnImageFileException {
 		// Utilisateur newUser = userServiceImpl.addNewUser(username, password,
 		// email,confirPassword);
+		//System.out.println(user.getProfile().getId());
 		return userServiceImpl.addNewUser(user);
 	}
 
