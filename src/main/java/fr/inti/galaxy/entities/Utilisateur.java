@@ -2,6 +2,7 @@ package fr.inti.galaxy.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import fr.inti.galaxy.security.AppRole;
@@ -16,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -58,6 +60,8 @@ public class Utilisateur {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Profile profile;
 	
-	
+	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	@JsonIgnore
+	private List<Notification> notifications;
 
 }

@@ -12,6 +12,7 @@ import fr.inti.galaxy.dtos.DocumentProjetDTO;
 import fr.inti.galaxy.dtos.FormationDTO;
 import fr.inti.galaxy.dtos.LivrableDTO;
 import fr.inti.galaxy.dtos.ModuleFormationDTO;
+import fr.inti.galaxy.dtos.NotificationDTO;
 import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.dtos.UtilisateurDTO;
 import fr.inti.galaxy.entities.Avis;
@@ -20,6 +21,7 @@ import fr.inti.galaxy.entities.DocumentProjet;
 import fr.inti.galaxy.entities.Formation;
 import fr.inti.galaxy.entities.Livrable;
 import fr.inti.galaxy.entities.ModuleFormation;
+import fr.inti.galaxy.entities.Notification;
 import fr.inti.galaxy.entities.Sujet;
 import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.security.AppRole;
@@ -70,11 +72,23 @@ public class MapperImpl {
 		BeanUtils.copyProperties(sujetDTO, sujet);
 		return sujet;
 	}
-	
+
 	public static AvisDTO fromAvis(Avis avis) {
 		AvisDTO avisDTO = new AvisDTO();
 		BeanUtils.copyProperties(avis, avisDTO);
 		return avisDTO;
+	}
+
+	public static Notification fromNotificationDTO(NotificationDTO notificationDTO) {
+		Notification notification = new Notification();
+		BeanUtils.copyProperties(notificationDTO, notification);
+		return notification;
+	}
+
+	public static NotificationDTO fromNotification(Notification notification) {
+		NotificationDTO notificationDTO = new NotificationDTO();
+		BeanUtils.copyProperties(notification, notificationDTO);
+		return notificationDTO;
 	}
 
 	public static LivrableDTO fromLivrable(Livrable livrable) {
@@ -133,6 +147,8 @@ public class MapperImpl {
 				utilisateur.getDocuments().stream().map(MapperImpl::fromDocument).collect(Collectors.toList()));
 		utilisateurDTO.setDocumentProjets(utilisateur.getDocumentProjets().stream().map(MapperImpl::fromDocumentProjet)
 				.collect(Collectors.toList()));
+		utilisateurDTO.setNotifications(
+				utilisateur.getNotifications().stream().map(MapperImpl::fromNotification).collect(Collectors.toList()));
 		return utilisateurDTO;
 	}
 
@@ -143,6 +159,8 @@ public class MapperImpl {
 				utilisateurDTO.getDocuments().stream().map(MapperImpl::fromDocumentDTO).collect(Collectors.toList()));
 		utilisateur.setDocumentProjets(utilisateurDTO.getDocumentProjets().stream()
 				.map(MapperImpl::fromDocumentProjetDTO).collect(Collectors.toList()));
+		utilisateur.setNotifications(utilisateurDTO.getNotifications().stream().map(MapperImpl::fromNotificationDTO)
+				.collect(Collectors.toList()));
 		return utilisateur;
 	}
 

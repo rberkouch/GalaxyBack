@@ -25,6 +25,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -216,5 +217,9 @@ public class UserResource {
 		utilisateur.setFirstLogin(true);
 		userServiceImpl.addNewUser(utilisateur);
 		
+	}
+	@DeleteMapping("/user/{username}")
+	public void deleteUtilisateur(@PathVariable("username") String username) throws IOException {
+		userServiceImpl.deleteUtilisateur(username);
 	}
 }

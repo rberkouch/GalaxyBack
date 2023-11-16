@@ -1,6 +1,7 @@
 package fr.inti.galaxy.dtos;
 
 import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -17,5 +18,6 @@ public class UtilisateurDTO {
 	private boolean firstLogin;
 	private List<DocumentDTO> documents;
 	private List<DocumentProjetDTO> documentProjets;
+	private List<NotificationDTO> notifications;
 
 }

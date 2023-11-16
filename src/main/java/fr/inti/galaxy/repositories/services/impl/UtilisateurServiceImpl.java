@@ -199,9 +199,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public void deleteUtilisateur(String username) throws IOException {
+		System.out.println("username="+username);
 		Utilisateur user = userRepository.findByUsername(username);
-		Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
-		FileUtils.deleteDirectory(new File(userFolder.toString()));
+		System.out.println("user="+user.getUsername());
+		/*Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
+		FileUtils.deleteDirectory(new File(userFolder.toString()));*/
 		userRepository.delete(user);
 	}
 
