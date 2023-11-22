@@ -53,7 +53,7 @@ public class Utilisateur {
 	@JoinTable(name = "tbl_utilisateurs_documents_projets", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<DocumentProjet> documentProjets;
 
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	@JoinTable(name = "profil", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId",referencedColumnName = "role"))
 	private List<AppRole> roles;
 	
