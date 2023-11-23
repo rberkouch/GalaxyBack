@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.inti.galaxy.dtos.SujetDTO;
 import fr.inti.galaxy.entities.Sujet;
+import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.mappers.MapperImpl;
 import fr.inti.galaxy.repositories.services.SujetService;
 
@@ -81,6 +83,23 @@ public class SujetController {
 
 	@PutMapping("/sujets")
 	public void updateSujet(@RequestBody Sujet sujet) {
-		sujetService.save(sujet);
+		
+		sujet=sujetService.save(sujet);
+		
 	}
+	@PatchMapping("/update_status_sujets")
+	public void updateSujet2(@RequestBody Sujet sujet) {
+		Sujet existingSujet=sujetService.getSujetById(sujet.getId().intValue());
+		existingSujet.setStatut(sujet.getStatut());
+		sujetService.save(existingSujet);
+		if(sujet.getStatut()==0)
+		{
+		List<String> emails= existingSujet.getUtilisateurs().stream().map(u->u.getEmail()).collect(Collectors.toList());
+		for(String mail:emails)
+		{
+			sujetService.sendMail(mail, existingSujet);
+		}
+		}
+	}
+	
 }

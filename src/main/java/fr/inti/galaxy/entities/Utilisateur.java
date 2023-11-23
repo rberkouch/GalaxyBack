@@ -57,11 +57,15 @@ public class Utilisateur {
 	@JoinTable(name = "profil", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId",referencedColumnName = "role"))
 	private List<AppRole> roles;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	private Profile profile;
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Notification> notifications;
+	
+	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	@JsonIgnore
+	private List<Avis> avis;
 
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Création de compte - Galaxy IntiFormation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Suppression sujet <strong th:text="${titreSujet}"></strong></h1>
+
+        <p>Nous vous informons que le sujet <strong th:text="${titreSujet}"></strong> n'est plus disponible </p>
+        <p>Cordialement</p>
+        <p>IntiFormation</p>
+    </div>
+</body>
+</html>

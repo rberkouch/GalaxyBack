@@ -23,4 +23,6 @@ public interface SujetService {
 	void deleteOneFromDocumentProjetUtilisateurs(Long idSujet, String idUser);
 
 	<T> List<Optional<T>> findAllDocumentProjetUtilisateurs(Long idSujet, String idUser);
+	
+	public void sendMail(String email, Sujet sujet);
 }
