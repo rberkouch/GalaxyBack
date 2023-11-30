@@ -148,7 +148,7 @@ public class UserResource {
 	@GetMapping("/find/{username}")
 	public Utilisateur getUser(@PathVariable("username") String username) {
 		Utilisateur user = userServiceImpl.findUtilisateurByUtilisateurname(username);
-		System.out.println(user);
+		//System.out.println(user);
 		return user;
 	}
 

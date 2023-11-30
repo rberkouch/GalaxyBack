@@ -201,6 +201,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public void deleteUtilisateur(String username) throws IOException {
 		System.out.println("username="+username);
 		Utilisateur user = userRepository.findByUsername(username);
+		//user.setDocumentProjets(null);
 		System.out.println("user="+user.getUsername());
 		/*Path userFolder = Paths.get(USER_FOLDER + user.getUsername()).toAbsolutePath().normalize();
 		FileUtils.deleteDirectory(new File(userFolder.toString()));*/
@@ -364,8 +365,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		}
 		
 		 Utilisateur savedUser = userRepository.save(user);
-
-		    sendMail(pass, user.getEmail());
+		 	if(savedUser.isFirstLogin()==false)
+		 	{
+		 		 sendMail(pass, user.getEmail());
+		 	}
+		   
 
 		    return savedUser;
 

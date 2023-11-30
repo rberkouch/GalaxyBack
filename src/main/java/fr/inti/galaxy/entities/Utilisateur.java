@@ -45,11 +45,11 @@ public class Utilisateur {
 	private boolean isActive;
 	private boolean firstLogin;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	@JoinTable(name = "tbl_utilisateurs_documents", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<Document> documents;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	@JoinTable(name = "tbl_utilisateurs_documents_projets", joinColumns = @JoinColumn(name = "utilisateurId",referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "documentId",referencedColumnName = "id"))
 	private List<DocumentProjet> documentProjets;
 

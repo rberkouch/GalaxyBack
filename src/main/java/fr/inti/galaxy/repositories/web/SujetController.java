@@ -43,10 +43,11 @@ public class SujetController {
 				.filter(predicate).map(MapperImpl::fromSujet).collect(Collectors.toList());
 	}
 
-
 	@GetMapping("/sujets/user/{username}")
 	List<Sujet> findSujetsByUsername(@PathVariable("username") String username) {
-		return sujetService.findSujetsByUsername(username);
+		Predicate<Sujet> predicate=s-> s.getStatut()==2 || s.getStatut()==3 ; 
+		return sujetService.findSujetsByUsername(username).stream()
+				.filter(predicate).collect(Collectors.toList());
 	}
 
 	@GetMapping("/documentProjetUtilisateurs/{idSujet}/{idUser}")
