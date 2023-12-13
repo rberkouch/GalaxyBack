@@ -25,4 +25,6 @@ public interface SujetService {
 	<T> List<Optional<T>> findAllDocumentProjetUtilisateurs(Long idSujet, String idUser);
 	
 	public void sendMail(String email, Sujet sujet);
+	
+	public void sendMailAffectation(String email, Sujet sujet);
 }

@@ -93,4 +93,29 @@ public class SujetServiceImpl implements SujetService {
 
 		
 	}
+	public void sendMailAffectation(String email, Sujet sujet)
+	{
+		//-------------------------------------------------------------------------------------
+		 try {
+	            MimeMessage message = emailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, false);
+
+	            Context context = new Context();
+	            context.setVariable("assignedSubject", sujet.getTitle());
+
+	            
+	            String emailContent = templateEngine.process("affectation-sujet", context);
+	            
+	            helper.setTo(email);
+	            helper.setSubject("Affectation sujet:"+sujet.getTitle());
+	            helper.setText(emailContent, true);
+	            helper.addCc("dardour.mohammed@gmail.com");
+
+	            emailSender.send(message);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+		
+	}
 }

@@ -411,5 +411,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	{
 		return sujetRepository.chercherUserWithSujet(id);
 	}
+	
+	public Utilisateur findbyId(String userId)
+	{
+		return userRepository.findById(userId).get();
+	}
 
 }

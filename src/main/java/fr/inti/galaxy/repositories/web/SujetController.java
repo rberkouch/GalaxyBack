@@ -22,12 +22,16 @@ import fr.inti.galaxy.entities.Sujet;
 import fr.inti.galaxy.entities.Utilisateur;
 import fr.inti.galaxy.mappers.MapperImpl;
 import fr.inti.galaxy.repositories.services.SujetService;
+import fr.inti.galaxy.repositories.services.UtilisateurService;
 
 @RestController
 @CrossOrigin("*")
 public class SujetController {
 	@Autowired
 	SujetService sujetService;
+	
+	@Autowired
+	UtilisateurService utilisateurService;
 
 	@GetMapping("/sujets")
 	public List<SujetDTO> sujets() {
@@ -59,6 +63,10 @@ public class SujetController {
 	@PostMapping("/sujets/insertsujetuser")
 	void affectSujetToUser(@RequestParam("idSujet") Long idSujet, @RequestParam("idUser") String idUser) {
 		sujetService.affectSujetToUser(idSujet, idUser);
+		System.out.println(utilisateurService.findbyId(idUser).getEmail());
+		System.out.println(sujetService.getSujetById(idSujet.intValue()).getTitle());
+		sujetService.sendMailAffectation(utilisateurService.findbyId(idUser).getEmail(), sujetService.getSujetById(idSujet.intValue()));
+		
 	}
 
 	@GetMapping("/sujets/{sujetId}")

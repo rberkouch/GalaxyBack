@@ -1,5 +1,6 @@
 package fr.inti.galaxy.repositories.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class AvisServiceImpl implements AvisService {
 	@Override
 	public Avis save(Avis avis) {
 		
+		avis.setDateAvis(new Date());
 		return avisRepository.save(avis);
 	}
 

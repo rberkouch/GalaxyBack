@@ -89,6 +89,8 @@ public interface UtilisateurService {
 	
 	List<Utilisateur> findUsersWithSujetDocumentProjet(int id);
 	
+	Utilisateur findbyId(String userId);
+	
 	
 
 }

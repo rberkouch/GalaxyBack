@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Affectation de sujet - Votre Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Bonjour,</p>
+        <p>Nous tenons à vous informer que le sujet <strong th:text="${assignedSubject}"></strong> vous a été attribué via l'application Galaxy Information.</p>
+        <p>Pour plus de détails concernant le sujet, nous vous invitons à visiter votre espace personnel sur l'application.</p>
+        <p>Vous pouvez commencer à travailler sur votre sujet dès maintenant.</p>
+        <p>Nous restons à votre disposition pour toute assistance supplémentaire.</p>
+        <p>Cordialement,</p>
+        <p>IntiFormation</p>
+    </div>
+</body>
+</html>
