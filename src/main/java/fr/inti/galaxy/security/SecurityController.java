@@ -51,7 +51,7 @@ public class SecurityController {
 	String scope = authentication.getAuthorities().stream().map(a->a.getAuthority()).collect(Collectors.joining(" "));
 	JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
 			.issuedAt(instant)
-			.expiresAt(instant.plus(10,ChronoUnit.MINUTES))
+			.expiresAt(instant.plus(50,ChronoUnit.MINUTES))
 			.subject(Username)
 			.claim("scope", scope)
 			.build();

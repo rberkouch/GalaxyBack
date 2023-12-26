@@ -16,15 +16,15 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Sujet extends DocumentProjet {
-	@Column(length = 65555)
+	@Column(length = Integer.MAX_VALUE)
 	private String description;
-	@Column(length = 65555)
+	@Column(length = Integer.MAX_VALUE)
 	private String functionality;
-	@Column(length = 65555)
+	@Column(length = Integer.MAX_VALUE)
 	private String stackTechnique;
-	@Column(length = 65555)
+	@Column(length = Integer.MAX_VALUE)
 	private String expectedDelivery;
-	@Column(length = 65555)
+	@Column(length = Integer.MAX_VALUE)
 	private String developerRating;
 	private Integer statut; //0: supprimé 1: pas encore activé 2: activé 3: demande de supp envoyé 
 	//Le profil représente la technologie associée au sujet
